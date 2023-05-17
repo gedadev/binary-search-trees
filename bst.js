@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Node from './node.js';
 
 export default class BinarySearchTree {
@@ -45,5 +46,34 @@ export default class BinarySearchTree {
         current = current.rightChild;
       }
     }
+  }
+
+  deleteNode(value, node = this.root) {
+    if (!node) {
+      return null;
+    }
+    if (value < node.value) {
+      node.leftChild = this.deleteNode(value, node.leftChild);
+    } else if (value > node.value) {
+      node.rightChild = this.deleteNode(value, node.rightChild);
+    } else if (value === node.value) {
+      // if (!node.leftChild && !node.rightChild) {
+      //   node = null;
+      // } else if (!node.leftChild) {
+      //   node = node.rightChild;
+      // } else if (!node.rightChild) {
+      //   node = node.leftChild;
+      // } else {
+      //   let smallestNode = node.rightChild;
+      //   while (smallestNode.leftChild !== null) {
+      //     smallestNode = smallestNode.leftChild;
+      //   }
+      //   node.value = smallestNode.value;
+      //   smallestNode = smallestNode.rightChild;
+      // }
+    } else {
+      return null;
+    }
+    return node;
   }
 }
