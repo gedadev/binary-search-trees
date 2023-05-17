@@ -80,4 +80,21 @@ export default class BinarySearchTree {
       smallestNode = smallestNode.rightChild;
     }
   }
+
+  findNode(value, current = this.root) {
+    if (!current) {
+      return null;
+    }
+    let node = null;
+    if (value < current.value) {
+      node = this.findNode(value, current.leftChild);
+    }
+    if (value > current.value) {
+      node = this.findNode(value, current.rightChild);
+    }
+    if (value === current.value) {
+      node = current;
+    }
+    return node;
+  }
 }
