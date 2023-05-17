@@ -57,23 +57,27 @@ export default class BinarySearchTree {
     } else if (value > node.value) {
       node.rightChild = this.deleteNode(value, node.rightChild);
     } else if (value === node.value) {
-      // if (!node.leftChild && !node.rightChild) {
-      //   node = null;
-      // } else if (!node.leftChild) {
-      //   node = node.rightChild;
-      // } else if (!node.rightChild) {
-      //   node = node.leftChild;
-      // } else {
-      //   let smallestNode = node.rightChild;
-      //   while (smallestNode.leftChild !== null) {
-      //     smallestNode = smallestNode.leftChild;
-      //   }
-      //   node.value = smallestNode.value;
-      //   smallestNode = smallestNode.rightChild;
-      // }
+      BinarySearchTree.removeNode(node);
     } else {
       return null;
     }
     return node;
+  }
+
+  static removeNode(node) {
+    if (!node.leftChild && !node.rightChild) {
+      node = null;
+    } else if (!node.leftChild) {
+      node = node.rightChild;
+    } else if (!node.rightChild) {
+      node = node.leftChild;
+    } else {
+      let smallestNode = node.rightChild;
+      while (smallestNode.leftChild !== null) {
+        smallestNode = smallestNode.leftChild;
+      }
+      node.value = smallestNode.value;
+      smallestNode = smallestNode.rightChild;
+    }
   }
 }
