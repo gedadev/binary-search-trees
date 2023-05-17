@@ -97,4 +97,22 @@ export default class BinarySearchTree {
     }
     return node;
   }
+
+  levelOrder(fn) {
+    if (!this.root) {
+      return;
+    }
+    const queue = [this.root];
+    while (queue.length > 0) {
+      const current = queue.shift();
+      fn(current);
+
+      if (current.leftChild) {
+        queue.push(current.leftChild);
+      }
+      if (current.rightChild) {
+        queue.push(current.rightChild);
+      }
+    }
+  }
 }
