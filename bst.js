@@ -115,4 +115,15 @@ export default class BinarySearchTree {
       }
     }
   }
+
+  getHeight(node) {
+    if (!node) {
+      return -1;
+    }
+
+    const leftHeight = this.getHeight(node.leftChild);
+    const rightHeight = this.getHeight(node.rightChild);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
