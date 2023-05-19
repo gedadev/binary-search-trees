@@ -126,4 +126,19 @@ export default class BinarySearchTree {
 
     return Math.max(leftHeight, rightHeight) + 1;
   }
+
+  isBalanced(current = this.root) {
+    if (!current) {
+      return true;
+    }
+
+    const leftHeight = this.getHeight(current.leftChild);
+    const rightHeight = this.getHeight(current.rightChild);
+
+    if ((Math.abs(leftHeight - rightHeight)) > 1) {
+      return false;
+    }
+
+    return this.isBalanced(current.leftChild) && this.isBalanced(current.rightChild);
+  }
 }
