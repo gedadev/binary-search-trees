@@ -116,6 +116,16 @@ export default class BinarySearchTree {
     }
   }
 
+  inOrderTraversal(current, fn) {
+    if (!current) {
+      return;
+    }
+
+    this.inOrderTraversal(current.leftChild, fn);
+    fn(current);
+    this.inOrderTraversal(current.rightChild, fn);
+  }
+
   getHeight(node) {
     if (!node) {
       return -1;
@@ -146,15 +156,5 @@ export default class BinarySearchTree {
     const nodes = [];
     this.inOrderTraversal(root, (node) => nodes.push(node.value));
     return this.buildBalancedTree(nodes);
-  }
-
-  inOrderTraversal(current, fn) {
-    if (!current) {
-      return;
-    }
-
-    this.inOrderTraversal(current.leftChild, fn);
-    fn(current);
-    this.inOrderTraversal(current.rightChild, fn);
   }
 }
