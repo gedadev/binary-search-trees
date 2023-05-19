@@ -142,6 +142,12 @@ export default class BinarySearchTree {
     return this.isBalanced(current.leftChild) && this.isBalanced(current.rightChild);
   }
 
+  reBalance(root = this.root) {
+    const nodes = [];
+    this.inOrderTraversal(root, (node) => nodes.push(node.value));
+    return this.buildBalancedTree(nodes);
+  }
+
   inOrderTraversal(current, fn) {
     if (!current) {
       return;
