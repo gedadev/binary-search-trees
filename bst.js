@@ -141,4 +141,14 @@ export default class BinarySearchTree {
 
     return this.isBalanced(current.leftChild) && this.isBalanced(current.rightChild);
   }
+
+  inOrderTraversal(current, fn) {
+    if (!current) {
+      return;
+    }
+
+    this.inOrderTraversal(current.leftChild, fn);
+    fn(current);
+    this.inOrderTraversal(current.rightChild, fn);
+  }
 }
